@@ -1,8 +1,11 @@
+using BlogProject.DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:SqlServer_Connection"]));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
